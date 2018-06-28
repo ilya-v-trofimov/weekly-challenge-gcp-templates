@@ -1,10 +1,21 @@
 resources:
-- name: {{ env["name"] }}
+- name: {{ env["name"] }}-allow
   type: compute.v1.firewall
   properties:
+    priority: 1000
     network: global/networks/{{ properties["network"] }}
     sourceRanges: ["{{ properties["ip"] }}"]
     targetTags:
     - {{ properties["tag"] }}
     allowed:
+    - IPProtocol: all
+- name: {{ env["name"] }}-deny
+  type: compute.v1.firewall
+  properties:
+    priority: 1001
+    network: global/networks/{{ properties["network"] }}
+    sourceRanges: ["0.0.0.0/0"]
+    targetTags:
+    - {{ properties["tag"] }}
+    denied:
     - IPProtocol: all
