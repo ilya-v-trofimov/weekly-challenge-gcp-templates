@@ -1,0 +1,20 @@
+{% set  NETWORK_NAME = "default" %}
+{% set  ZONE = "us-central1-a" %}
+{% set  NETWORK_TAG = "weekly-challenge" %}
+{% set  OCTO_IP = "114.141.101.210/32" %}
+
+
+resources:
+- name: weekly-challenge-instance
+  type: instance.jinja
+  properties:
+    machineType: f1-micro
+    zone: {{ ZONE }}
+    network: {{ NETWORK_NAME }}
+    tag: {{ NETWORK_TAG }}
+- name: {{ NETWORK_NAME }}-weekly-challenge-firewall
+  type: firewall.jinja
+  properties:
+    ip: {{ OCTO_IP }}
+    tag: {{ NETWORK_TAG }}
+    network: {{ NETWORK_NAME }}

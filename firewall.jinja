@@ -1,0 +1,10 @@
+resources:
+- name: {{ env["name"] }}
+  type: compute.v1.firewall
+  properties:
+    network: global/networks/{{ properties["network"] }}
+    sourceRanges: ["{{ properties["ip"] }}"]
+    targetTags:
+    - {{ properties["tag"] }}
+    allowed:
+    - IPProtocol: all

@@ -1,0 +1,9 @@
+
+imports:
+- path: instance.jinja
+- path: firewall.jinja
+- path: compute.jinja
+
+resources:
+- name: weekly-challenge
+  type: compute.jinja
